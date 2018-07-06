@@ -57,8 +57,3 @@ fmt.Println(mime2extension.Extensions("foo"));                    // => [] empty
 ## TEST AND FULL EXAMPLES
 
 Check file test_mime.go 
-
-
-## LICENSE
-
-MIT
