@@ -8,13 +8,13 @@ The golang library handle convertion between mime and extension.
 ### Get library
 
 ```
- go get github.com/bachvtuan/mime2extension
+ go get github.com/Enflick/mime2extension
 ```
 
 ### Import library to your code
 
 ```
-import "github.com/bachvtuan/mime2extension"
+import "github.com/Enflick/mime2extension"
 
 ```
 

@@ -878,6 +878,7 @@ func init() {
 		MimeExtension{"w3d", "application/x-director"},
 		MimeExtension{"wad", "application/x-doom"},
 		MimeExtension{"wav", "audio/x-wav"},
+		MimeExtension{"wav", "audio/wav"},
 		MimeExtension{"wax", "audio/x-ms-wax"},
 		MimeExtension{"wbmp", "image/vnd.wap.wbmp"},
 		MimeExtension{"wbs", "application/vnd.criticaltools.wbs+xml"},
