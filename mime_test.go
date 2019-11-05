@@ -2,7 +2,6 @@ package mime2extension
 
 import (
 	"errors"
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -29,10 +28,6 @@ func TestExtToMime(t *testing.T) {
 
 	err, mime = Lookup("foo")
 	makeAssertion(t, err, errors.New("Not found"), mime, "")
-
-	fmt.Println(Extensions("video/mp4"))  // => [mp4 mp4v mpg4]
-	fmt.Println(Extensions("image/jpeg")) // [jpeg jpe jpg]
-	fmt.Println(Extensions("foo"))        // => [] empty
 }
 
 func TestMimeToExtSingle(t *testing.T) {
