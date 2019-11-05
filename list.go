@@ -18,7 +18,7 @@ func init() {
 	
 }
 
-func createExtToMime(mimeToExt map[string][]string) (map[string]string) {
+func createExtToMime(mimeToExt map[string][]string) map[string]string {
 	extToMime := map[string]string {}
 	for k, exts := range mimeToExt {
 		for _, ext := range exts {
@@ -28,7 +28,7 @@ func createExtToMime(mimeToExt map[string][]string) (map[string]string) {
 	return extToMime
 }
 
-func createMimeToExt() (map[string][]string) {
+func createMimeToExt() map[string][]string {
 	mimeToExt := map[string][]string {
 		 "application/vnd.lotus-1-2-3": []string{"123"},
 		 "text/vnd.in3d.3dml": []string{"3dml"},
