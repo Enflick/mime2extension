@@ -8,49 +8,41 @@ import (
 	"strings"
 )
 
-/**
- * Given file path and it will return mime type
- * err if not found mime
- */
-func Lookup(file_path string) (error, string) {
+// Lookup looks up a mimetype from a file extension or a file path
+func Lookup(filePath string) (string, error) {
 
-	if file_path == "" {
-		return errors.New("file_path is empty"), ""
+	if filePath == "" {
+		return "", errors.New("filePath is empty")
 	}
 
-	file_path = strings.ToLower(file_path)
-	extension := filepath.Ext(file_path)
+	filePath = strings.ToLower(filePath)
+	extension := filepath.Ext(filePath)
 
 	if extension == "" {
-		extension = file_path
+		extension = filePath
 	} else {
 		extension = extension[1:]
 	}
 
 	if val, ok := bdMap.extToMime[extension]; ok {
-		return nil, val
+		return val, nil
 	}
 
-	return errors.New("not found"), ""
+	return "", errors.New("not found")
 }
 
-/**
- * Given file extension when input is mimetype
- * err if not found extension
- */
-func Extension(mime string) (error, string) {
+// Extension returns an extension for the given mime type
+func Extension(mime string) (string, error) {
 
 	mime = strings.ToLower(mime)
 
 	if val, ok := bdMap.mimeToExt[mime]; ok {
-		return nil, val[0]
+		return val[0], nil
 	}
-	return errors.New("not found"), ""
+	return "", errors.New("not found")
 }
 
-/**
- * Given list of files extension when input is mimetype
- */
+// Extensions returns a list of possible extensions for the given mime type
 func Extensions(mime string) []string {
 
 	mime = strings.ToLower(mime)

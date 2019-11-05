@@ -11,39 +11,39 @@ func TestExtToMime(t *testing.T) {
 	var err error
 	var mime string
 
-	err, mime = Lookup(".mp4")
+	mime, err = Lookup(".mp4")
 	makeAssertion(t, err, nil, mime, "video/mp4")
 
-	err, mime = Lookup("/path/to/file.txt")
+	mime, err = Lookup("/path/to/file.txt")
 	makeAssertion(t, err, nil, mime, "text/plain")
 
-	err, mime = Lookup("file.txt")
+	mime, err = Lookup("file.txt")
 	makeAssertion(t, err, nil, mime, "text/plain")
 
-	err, mime = Lookup(".TXT")
+	mime, err = Lookup(".TXT")
 	makeAssertion(t, err, nil, mime, "text/plain")
 
-	err, mime = Lookup("htm")
+	mime, err = Lookup("htm")
 	makeAssertion(t, err, nil, mime, "text/html")
 
-	err, mime = Lookup("foo")
+	mime, err = Lookup("foo")
 	makeAssertion(t, err, errors.New("not found"), mime, "")
 
-	err, mime = Lookup("")
-	makeAssertion(t, err, errors.New("file_path is empty"), mime, "")
+	mime, err = Lookup("")
+	makeAssertion(t, err, errors.New("filePath is empty"), mime, "")
 }
 
 func TestMimeToExtSingle(t *testing.T) {
 	var err error
 	var ext string
 
-	err, ext = Extension("video/mp4")
+	ext, err = Extension("video/mp4")
 	makeAssertion(t, err, nil, ext, "mp4")
 
-	err, ext = Extension("image/jpeg")
+	ext, err = Extension("image/jpeg")
 	makeAssertion(t, err, nil, ext, "jpeg")
 
-	err, ext = Extension("foo")
+	ext, err = Extension("foo")
 	makeAssertion(t, err, errors.New("not found"), ext, "")
 }
 
