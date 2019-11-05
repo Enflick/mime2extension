@@ -31,7 +31,7 @@ func Lookup(file_path string) (error, string) {
 		return nil, val
 	}
 
-	return errors.New("Not found"), ""
+	return errors.New("not found"), ""
 }
 
 /**
@@ -45,7 +45,7 @@ func Extension(mime string) (error, string) {
 	if val, ok := bdMap.mimeToExt[mime]; ok {
 		return nil, val[0]
 	}
-	return errors.New("Not found"), ""
+	return errors.New("not found"), ""
 }
 
 /**

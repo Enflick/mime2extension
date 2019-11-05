@@ -27,7 +27,7 @@ func TestExtToMime(t *testing.T) {
 	makeAssertion(t, err, nil, mime, "text/html")
 
 	err, mime = Lookup("foo")
-	makeAssertion(t, err, errors.New("Not found"), mime, "")
+	makeAssertion(t, err, errors.New("not found"), mime, "")
 
 	err, mime = Lookup("")
 	makeAssertion(t, err, errors.New("file_path is empty"), mime, "")
@@ -44,7 +44,7 @@ func TestMimeToExtSingle(t *testing.T) {
 	makeAssertion(t, err, nil, ext, "jpeg")
 
 	err, ext = Extension("foo")
-	makeAssertion(t, err, errors.New("Not found"), ext, "")
+	makeAssertion(t, err, errors.New("not found"), ext, "")
 }
 
 func TestMimeToExtList(t *testing.T) {
