@@ -1,77 +1,55 @@
 package mime2extension
+
 //build Lookup and Extension and Extensions
 
 import (
-	"path/filepath"
-	//"fmt"
-	"strings"
 	"errors"
+	"path/filepath"
+	"strings"
 )
 
-type MimeExtension struct{
-	Extension string
-	Mime string
-}
+// Lookup looks up a mimetype from a file extension or a file path
+func Lookup(filePath string) (string, error) {
 
-/**
- * Given file path and it will return mime type
- * err if not found mime
- */
-func Lookup( file_path string ) (error, string) {
-
-	if file_path == ""{
-		return errors.New("file_path is empty"), ""
+	if filePath == "" {
+		return "", errors.New("filePath is empty")
 	}
 
-	file_path = strings.ToLower( file_path  )
-	extension := filepath.Ext( file_path )
+	filePath = strings.ToLower(filePath)
+	extension := filepath.Ext(filePath)
 
-	if extension ==  "" {
-		extension = file_path
-	}else{
+	if extension == "" {
+		extension = filePath
+	} else {
 		extension = extension[1:]
 	}
 
-
-	for _, item := range *List_items {
-		if item.Extension == extension {
-			return nil, item.Mime
-		}
+	if val, ok := bdMap.extToMime[extension]; ok {
+		return val, nil
 	}
 
-	return errors.New("Not found"), ""
+	return "", errors.New("not found")
 }
 
-/**
- * Given file extension when input is mimetype
- * err if not found extension
- */
-func Extension( mime string ) (error, string) {
+// Extension returns an extension for the given mime type
+func Extension(mime string) (string, error) {
 
-	mime = strings.ToLower( mime  )
+	mime = strings.ToLower(mime)
 
-	for _, item := range *List_items {
-		if item.Mime == mime {
-			return nil, item.Extension
-		}
+	if val, ok := bdMap.mimeToExt[mime]; ok {
+		return val[0], nil
 	}
-
-	return errors.New("Not found"), ""
+	return "", errors.New("not found")
 }
 
-/**
- * Given list of files extension when input is mimetype
- */
-func Extensions( mime string ) []string {
-	
-	mime = strings.ToLower( mime  )
-  var return_list []string
+// Extensions returns a list of possible extensions for the given mime type
+func Extensions(mime string) []string {
 
-	for _, item := range *List_items {
-		if item.Mime == mime {
-			return_list = append( return_list, item.Extension )
-		}
+	mime = strings.ToLower(mime)
+
+	if val, ok := bdMap.mimeToExt[mime]; ok {
+		return val
 	}
 
-	return return_list
+	return []string{}
 }
