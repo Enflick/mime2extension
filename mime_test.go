@@ -28,6 +28,9 @@ func TestExtToMime(t *testing.T) {
 
 	err, mime = Lookup("foo")
 	makeAssertion(t, err, errors.New("Not found"), mime, "")
+
+	err, mime = Lookup("")
+	makeAssertion(t, err, errors.New("file_path is empty"), mime, "")
 }
 
 func TestMimeToExtSingle(t *testing.T) {
