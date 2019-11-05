@@ -19,8 +19,7 @@ func init() {
 }
 
 func createExtToMime(mimeToExt map[string][]string) (map[string]string) {
-	extToMime := map[string]string {
-	}
+	extToMime := map[string]string {}
 	for k, exts := range mimeToExt {
 		for _, ext := range exts {
 			extToMime[ext] = k
